@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Duality Bass Studio
+Comment=Full Metal Bass Suite
+Exec=duality-bass-studio
+Terminal=false
+Type=Application
+Icon=duality-bass-studio.png
+Categories=AudioVideo;Audio;X-Jack;Midi;X-MIDI;
+Keywords=Audio;Sound;Guitar;Amplifier;Record;Midi;Jack;
+
