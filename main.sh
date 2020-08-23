@@ -118,6 +118,7 @@ aa_uninstall () {
 
 
 # Start
+echo ""
 echo "**************************************"
 echo "*        Audio Assault Installer     *"
 echo "**************************************"
