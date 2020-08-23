@@ -7,6 +7,7 @@ This is an installer for some cool guitar audio software from Audio Assault that
 
 ## Software
 The original Audio Assault ZIP packages **must be** on the same directory before executing the install script.
+
 * Duality [version 1.2.51]
 * RVXX [version 1.0.1]
 * Sigma [version 1.0.2]
