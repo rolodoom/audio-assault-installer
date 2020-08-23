@@ -10,11 +10,8 @@ The ZIP packages **must be** on the same directory before executing the install 
 * Sigma [version 1.0.2]
 
 ## Usage
-Clone repo and execute install script.
+Clone repo and execute install script and follow the instructions.
 
     git clone https://github.com/rolodoom/audio-assault-installer.git
     cd audio-assault-installer
-### Install
-    chmod +x setup.sh && ./setup.sh
-### Uninstall
-    chmod +x setup.sh && ./setup.sh
+    chmod +x main.sh && ./main.sh
