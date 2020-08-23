@@ -1,6 +1,8 @@
 # audio-assault-installer
 An installer for [Audio Assault](https://audio-assault.com/) Linux Software.
 
+![Screenshot](screenshot.png "Screenshot")
+
 This is an installer for some cool guitar audio software from Audio Assult that I use on my Linux Box. This installer extracts and install the stuff from the given zip packages.
 
 ## Software
