@@ -32,8 +32,8 @@ aa_install () {
         mkdir @temp
         # Unzip Audio Assult Sofware
         unzip -q 'Duality Bass Studio 1.2.51 Installer.zip' -d "$TEMPDIR"/Duality
-        unzip -q 'Sigma 102.zip' -d "$TEMPDIR"/Sigma
-        unzip -q 'RVXX Installer 1.0.1.zip' -d "$TEMPDIR"/RVXX
+        unzip -q 'Sigma v2 upd103.zip' -d "$TEMPDIR"/Sigma
+        unzip -q 'RVXX v2 upd103.zip' -d "$TEMPDIR"/RVXX
     fi
 
     # clean mac Files from installers
@@ -54,8 +54,8 @@ aa_install () {
 
     # copy VST files
     cp -r "$TEMPDIR/Duality/Linux 1.2.5/Duality Bass Studio.so" "$AUDIOASSAULT"
-    cp -r "$TEMPDIR/Sigma/SigmaVST 102.so" "$AUDIOASSAULT"
-    cp -r "$TEMPDIR/RVXX/RVXX Installer 1.0.1/RVXX Linux /RVXX VST 101.so" "$AUDIOASSAULT"
+    cp -r "$TEMPDIR/Sigma/Sigma v2/Sigma v2 Linux/Sigma v2.so" "$AUDIOASSAULT"
+    cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX v2.so" "$AUDIOASSAULT"
 
     # check if $HOME/.audio-assault Assault exists
     if [ ! -d "$AUDIOASSAULTBIN" ]; then
@@ -68,17 +68,25 @@ aa_install () {
     # copy Stand Alone
     sudo cp -r "$TEMPDIR/Duality/Linux 1.2.5/Duality" "$AUDIOASSAULTBIN"
     sudo cp -r "$TEMPDIR/Duality/Linux 1.2.5/Duality Bass Studio" "$AUDIOASSAULTBIN/Duality"
-    sudo cp -r "$TEMPDIR/RVXX/RVXX Installer 1.0.1/RVXX Linux /RVXX STANDALONE 101" "$AUDIOASSAULTBIN/RVXX"
-    sudo cp -r "$TEMPDIR/Sigma/Sigma Standalone 102" "$AUDIOASSAULTBIN/Sigma"
+    sudo cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX" "$AUDIOASSAULTBIN"
+    sudo cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX v2 Standalone" "$AUDIOASSAULTBIN/RVXX"
+    sudo cp -r "$TEMPDIR/Sigma/Sigma v2/Sigma v2 Linux/Sigma" "$AUDIOASSAULTBIN"
+    sudo cp -r "$TEMPDIR/Sigma/Sigma v2/Sigma v2 Linux/Sigma v2 Standalone" "$AUDIOASSAULTBIN/Sigma"
+    
+    #chmod 777
+    sudo chmod -R 777 "$AUDIOASSAULTBIN/Duality/"
+    sudo chmod -R 777 "$AUDIOASSAULTBIN/RVXX/"
+    sudo chmod -R 777 "$AUDIOASSAULTBIN/Sigma/"
+
     # chmod
     sudo chmod +x "$AUDIOASSAULTBIN/Duality/Duality Bass Studio"
-    sudo chmod +x "$AUDIOASSAULTBIN/RVXX/RVXX STANDALONE 101"
-    sudo chmod +x "$AUDIOASSAULTBIN/Sigma/Sigma Standalone 102"
+    sudo chmod +x "$AUDIOASSAULTBIN/RVXX/RVXX v2 Standalone"
+    sudo chmod +x "$AUDIOASSAULTBIN/Sigma/Sigma v2 Standalone"
 
     # usr/local/bin links
     sudo ln -s "$AUDIOASSAULTBIN/Duality/Duality Bass Studio" "/usr/local/bin/duality-bass-studio"
-    sudo ln -s "$AUDIOASSAULTBIN/RVXX/RVXX STANDALONE 101" "/usr/local/bin/rvxx"
-    sudo ln -s "$AUDIOASSAULTBIN/Sigma/Sigma Standalone 102" "/usr/local/bin/sigma"
+    sudo ln -s "$AUDIOASSAULTBIN/RVXX/RVXX v2 Standalone" "/usr/local/bin/rvxx"
+    sudo ln -s "$AUDIOASSAULTBIN/Sigma/Sigma v2 Standalone" "/usr/local/bin/sigma"
 
     # copy .local files
     sudo cp -r usr/share /usr
