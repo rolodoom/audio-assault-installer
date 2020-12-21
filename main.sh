@@ -18,8 +18,8 @@
 command -v unzip >/dev/null 2>&1 || { echo >&2 "I require unzip but it's not installed. Aborting."; exit 1; }
 
 TEMPDIR=$(readlink -f "@temp")
-VST=$(readlink -f "$HOME/.vst")
-AUDIOASSAULT=$(readlink -f "$HOME/.vst/Audio Assault")
+VST=$(readlink -f "/usr/lib/vst")
+AUDIOASSAULT=$(readlink -f "/usr/lib/vst/Audio Assault")
 AUDIOASSAULTBIN=$(readlink -f "/opt/Audio Assault")
 
 # install subrutine
@@ -39,23 +39,16 @@ aa_install () {
     # clean mac Files from installers
     find "$TEMPDIR" -name '.DS_Store' -exec rm -rf {} \;
 
-    # check if $HOME/.vst exists
-    if [ ! -d "$VST" ]; then
-    # Create dir if doesn't exists
-        mkdir "$VST"
-        mkdir "$VST/Audio Assault"
-    fi
-
-    # check if $HOME/.vst/Audio Assault exists
+    # check if /usr/lib/vst/Audio Assault exists
     if [ ! -d "$AUDIOASSAULT" ]; then
     # Create dir if doesn't exists
-        mkdir "$AUDIOASSAULT"
+        sudo mkdir "$AUDIOASSAULT"
     fi
 
     # copy VST files
-    cp -r "$TEMPDIR/Duality/Linux 1.2.5/Duality Bass Studio.so" "$AUDIOASSAULT"
-    cp -r "$TEMPDIR/Sigma/Sigma v2/Sigma v2 Linux/Sigma v2.so" "$AUDIOASSAULT"
-    cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX v2.so" "$AUDIOASSAULT"
+    sudo cp -r "$TEMPDIR/Duality/Linux 1.2.5/Duality Bass Studio.so" "$AUDIOASSAULT"
+    sudo cp -r "$TEMPDIR/Sigma/Sigma v2/Sigma v2 Linux/Sigma v2.so" "$AUDIOASSAULT"
+    sudo cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX v2.so" "$AUDIOASSAULT"
 
     # check if $HOME/.audio-assault Assault exists
     if [ ! -d "$AUDIOASSAULTBIN" ]; then
@@ -114,7 +107,7 @@ aa_uninstall () {
     sudo rm -rf /usr/share/icons/hicolor/256x256/apps/sigma.png
     sudo rm -rf /usr/share/icons/hicolor/256x256/apps/duality-bass-studio.png
     # vst
-    rm -rf "$AUDIOASSAULT"
+    sudo rm -rf "$AUDIOASSAULT"
     # bin
     sudo rm -rf "$AUDIOASSAULTBIN"
     sudo rm -rf /usr/local/bin/duality-bass-studio
