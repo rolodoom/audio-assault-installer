@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Duality Bass Studio
 Comment=Full Metal Bass Suite
-Exec=duality-bass-studio
+Exec=duality-bass-studio_v1
 Terminal=false
 Type=Application
 Icon=duality-bass-studio
