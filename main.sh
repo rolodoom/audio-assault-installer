@@ -51,6 +51,10 @@ aa_install () {
     sudo cp -r "$TEMPDIR/Duality/Linux 1.2.5/Duality Bass Studio.so" "$AUDIOASSAULT"
     sudo cp -r "$TEMPDIR/Sigma/Sigma v2/Sigma v2 Linux/Sigma v2.so" "$AUDIOASSAULT"
     sudo cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX v2.so" "$AUDIOASSAULT"
+    #1
+    sudo cp -r "$TEMPDIR/Sigma/SigmaVST 102.so" "$AUDIOASSAULT"
+    sudo cp -r "$TEMPDIR/RVXX/RVXX Installer 1.0.1/RVXX Linux /RVXX VST 101.so" "$AUDIOASSAULT"
+    
 
     # check if $HOME/.audio-assault Assault exists
     if [ ! -d "$AUDIOASSAULTBIN" ]; then
