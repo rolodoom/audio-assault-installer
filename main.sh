@@ -92,7 +92,7 @@ aa_install () {
     #v1
     sudo ln -s "$AUDIOASSAULTBIN/Duality/Duality Bass Studio" "/usr/local/bin/duality-bass-studio_v1"
     sudo ln -s "$AUDIOASSAULTBIN/RVXX/RVXX STANDALONE 101" "/usr/local/bin/rvxx_v1"
-    sudo ln -s "$AUDIOASSAULTBIN/Sigma/Sigma v2 Standalone" "/usr/local/bin/sigma_v1"
+    sudo ln -s "$AUDIOASSAULTBIN/Sigma/Sigma Standalone 102" "/usr/local/bin/sigma_v1"
 
     # copy .local files
     sudo cp -r usr/share /usr
