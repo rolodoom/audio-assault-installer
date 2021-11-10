@@ -11,6 +11,7 @@ The original Audio Assault ZIP packages **must be** on the same directory before
 * Duality [version 1.2.51]
 * RVXX [version 2 update 1.0.3 and version 1.0.1]
 * Sigma [version 2 update 1.0.3 and version 1.0.2]
+* Blacksun [version 1]
 
 
 ## Usage
