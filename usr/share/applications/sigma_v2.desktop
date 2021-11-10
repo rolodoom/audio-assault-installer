@@ -1,21 +1,9 @@
 [Desktop Entry]
-Categories=AudioVideo;Audio;X-Jack;Midi;X-MIDI;
-Comment[es_CO]=High Gain Amp Simulator
+Name=Sigma v2
 Comment=High Gain Amp Simulator
 Exec=sigma_v2
-GenericName[es_CO]=
-GenericName=
-Icon=sigma
-Keywords=Audio;Sound;Guitar;Amplifier;Record;Midi;Jack;
-MimeType=
-Name[es_CO]=Sigma v2
-Name=Sigma v2
-Path=
-StartupNotify=true
 Terminal=false
-TerminalOptions=
 Type=Application
-X-DBUS-ServiceName=
-X-DBUS-StartupType=
-X-KDE-SubstituteUID=false
-X-KDE-Username=
+Icon=sigma
+Categories=AudioVideo;Audio;X-Jack;Midi;X-MIDI;
+Keywords=Audio;Sound;Guitar;Amplifier;Record;Midi;Jack;
