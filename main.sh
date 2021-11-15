@@ -26,6 +26,9 @@ AUDIOASSAULTBIN=$(readlink -f "/opt/Audio Assault")
 aa_install () {
     echo "installing..."
 
+    # installing required libcurl-gnutls
+    sudo pacman -S libcurl-gnutls
+
     # check if @temp exists
     if [ ! -d "$TEMPDIR" ]; then
         # Create dir if doesn't exists
