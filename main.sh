@@ -8,7 +8,7 @@
 # | |       |  ___  |
 # | |       | |   | |    Install script
 # | |_____  | |___| |    for Audio Assault software
-# |_______| |_______|    Tested on Kubuntu 20.04 LTS
+# |_______| |_______|    Tested on Manjaro Qonos
 #
 #
 #
