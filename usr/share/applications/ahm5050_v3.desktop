@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=AHM 5050 v3
+Comment=Dual Amp Sim
+Exec=ahm5050_v3
+Terminal=false
+Type=Application
+Icon=ahm5050
+Categories=AudioVideo;Audio;X-Jack;Midi;X-MIDI;
+Keywords=Audio;Sound;Guitar;Amplifier;Record;Midi;Jack;

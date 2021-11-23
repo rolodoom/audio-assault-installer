@@ -34,6 +34,8 @@ aa_install () {
         # Create dir if doesn't exists
         mkdir @temp
         # Unzip Audio Assult Sofware
+        #v3
+        unzip -q 'AHMv3.zip' -d "$TEMPDIR"/AHM5050
         #v2
         unzip -q 'Sigma v2 upd103.zip' -d "$TEMPDIR"/Sigma
         unzip -q 'RVXX v2 upd103.zip' -d "$TEMPDIR"/RVXX
@@ -55,6 +57,8 @@ aa_install () {
     fi
 
     # copy VST files
+    #v3
+    sudo cp -r "$TEMPDIR/AHM5050/AHM5050v3 Linux/AHM 5050 v3 vst2.so" "$AUDIOASSAULT"
     #v2
     sudo cp -r "$TEMPDIR/Sigma/Sigma v2/Sigma v2 Linux/Sigma v2.so" "$AUDIOASSAULT"
     sudo cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX v2.so" "$AUDIOASSAULT"
@@ -70,9 +74,17 @@ aa_install () {
         sudo mkdir "$AUDIOASSAULTBIN"
         sudo mkdir "$AUDIOASSAULTBIN/RVXX"
         sudo mkdir "$AUDIOASSAULTBIN/Sigma"
+        sudo mkdir "$AUDIOASSAULTBIN/Duality"
+        sudo mkdir "$AUDIOASSAULTBIN/Blacksun"
+        sudo mkdir "$AUDIOASSAULTBIN/AHM5050"
+
     fi
 
     # copy Stand Alone
+    #v3
+    sudo cp -r "$TEMPDIR/AHM5050/AHM5050v3 Linux/AHM5050" "$AUDIOASSAULTBIN"
+    sudo cp -r "$TEMPDIR/AHM5050/AHM5050v3 Linux/AHM 5050 v3 Standalone" "$AUDIOASSAULTBIN/AHM5050"
+
     #v2
     sudo cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX" "$AUDIOASSAULTBIN"
     sudo cp -r "$TEMPDIR/RVXX/RVXX v2/RVXX v2 Linux/RVXX v2 Standalone" "$AUDIOASSAULTBIN/RVXX"
@@ -95,8 +107,12 @@ aa_install () {
     sudo chmod -R 777 "$AUDIOASSAULTBIN/RVXX/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/Sigma/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/Blacksun/"
+    sudo chmod -R 777 "$AUDIOASSAULTBIN/AHM5050/"
 
     # chmod
+    #v3
+    sudo chmod +x "$AUDIOASSAULTBIN/AHM5050/AHM 5050 v3 Standalone"
+
     #v2
     sudo chmod +x "$AUDIOASSAULTBIN/RVXX/RVXX v2 Standalone"
     sudo chmod +x "$AUDIOASSAULTBIN/Sigma/Sigma v2 Standalone"
@@ -107,6 +123,10 @@ aa_install () {
     sudo chmod +x "$AUDIOASSAULTBIN/Blacksun/Blacksun Standalone"
 
     # usr/local/bin links
+    #v3
+    sudo ln -s "$AUDIOASSAULTBIN/AHM5050/AHM 5050 v3 Standalone" "/usr/local/bin/ahm5050_v3"
+
+    #v2
     sudo ln -s "$AUDIOASSAULTBIN/RVXX/RVXX v2 Standalone" "/usr/local/bin/rvxx_v2"
     sudo ln -s "$AUDIOASSAULTBIN/Sigma/Sigma v2 Standalone" "/usr/local/bin/sigma_v2"
     #v1
@@ -130,7 +150,9 @@ aa_uninstall () {
 
     # @temp
     sudo rm -rf "$TEMPDIR"
+
     # desktop files
+    #v2
     sudo rm -rf /usr/share/applications/rvxx_v2.desktop
     sudo rm -rf /usr/share/applications/sigma_v2.desktop
     #v1
@@ -138,15 +160,19 @@ aa_uninstall () {
     sudo rm -rf /usr/share/applications/rvxx_v1.desktop
     sudo rm -rf /usr/share/applications/sigma_v1.desktop
     sudo rm -rf /usr/share/applications/blacksun_v1.desktop
+
     # icons
     sudo rm -rf /usr/share/icons/duality-bass-studio.png
     sudo rm -rf /usr/share/icons/rvxx.png
     sudo rm -rf /usr/share/icons/sigma.png
     sudo rm -rf /usr/share/icons/blacksun.png
+
     # vst
     sudo rm -rf "$AUDIOASSAULT"
     # bin
     sudo rm -rf "$AUDIOASSAULTBIN"
+
+    #v2
     sudo rm -rf /usr/local/bin/rvxx_v2
     sudo rm -rf /usr/local/bin/sigma_v2
     #v1
