@@ -152,6 +152,9 @@ aa_uninstall () {
     sudo rm -rf "$TEMPDIR"
 
     # desktop files
+
+    #v3
+    sudo rm -rf /usr/share/applications/ahm5050_v3.desktop
     #v2
     sudo rm -rf /usr/share/applications/rvxx_v2.desktop
     sudo rm -rf /usr/share/applications/sigma_v2.desktop
@@ -162,9 +165,10 @@ aa_uninstall () {
     sudo rm -rf /usr/share/applications/blacksun_v1.desktop
 
     # icons
-    sudo rm -rf /usr/share/icons/duality-bass-studio.png
+    sudo rm -rf /usr/share/icons/ahm5050.png
     sudo rm -rf /usr/share/icons/rvxx.png
     sudo rm -rf /usr/share/icons/sigma.png
+    sudo rm -rf /usr/share/icons/duality-bass-studio.png
     sudo rm -rf /usr/share/icons/blacksun.png
 
     # vst
