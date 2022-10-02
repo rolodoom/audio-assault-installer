@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Sigma EX
+Comment=High Gain Amp Simulator
+Exec=sigma_ex
+Terminal=false
+Type=Application
+Icon=sigma
+Categories=AudioVideo;Audio;X-Jack;Midi;X-MIDI;
+Keywords=Audio;Sound;Guitar;Amplifier;Record;Midi;Jack;

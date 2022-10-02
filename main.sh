@@ -34,6 +34,8 @@ aa_install () {
         # Create dir if doesn't exists
         mkdir @temp
         # Unzip Audio Assult Sofware
+        #EX
+        unzip -q 'SigmaEXFeb27.zip' -d "$TEMPDIR"/SigmaEX
         #v3
         unzip -q 'AHMv3.zip' -d "$TEMPDIR"/AHM5050
         #v2
@@ -57,6 +59,8 @@ aa_install () {
     fi
 
     # copy VST files
+    #EX
+    sudo cp -r "$TEMPDIR/SigmaEX/Sigma EX Linux/Linux/Sigma EX vst2.so" "$AUDIOASSAULT"
     #v3
     sudo cp -r "$TEMPDIR/AHM5050/AHM5050v3 Linux/AHM 5050 v3 vst2.so" "$AUDIOASSAULT"
     #v2
@@ -74,6 +78,7 @@ aa_install () {
         sudo mkdir "$AUDIOASSAULTBIN"
         sudo mkdir "$AUDIOASSAULTBIN/RVXX"
         sudo mkdir "$AUDIOASSAULTBIN/Sigma"
+        sudo mkdir "$AUDIOASSAULTBIN/Sigma EX"
         sudo mkdir "$AUDIOASSAULTBIN/Duality"
         sudo mkdir "$AUDIOASSAULTBIN/Blacksun"
         sudo mkdir "$AUDIOASSAULTBIN/AHM5050"
@@ -81,6 +86,10 @@ aa_install () {
     fi
 
     # copy Stand Alone
+    #EX
+    sudo cp -r "$TEMPDIR/SigmaEX/Sigma EX Linux/Linux/Sigma EX" "$AUDIOASSAULTBIN"
+    sudo cp -r "$TEMPDIR/SigmaEX/Sigma EX Linux/Linux/Sigma EX Standalone" "$AUDIOASSAULTBIN/Sigma EX"
+
     #v3
     sudo cp -r "$TEMPDIR/AHM5050/AHM5050v3 Linux/AHM5050" "$AUDIOASSAULTBIN"
     sudo cp -r "$TEMPDIR/AHM5050/AHM5050v3 Linux/AHM 5050 v3 Standalone" "$AUDIOASSAULTBIN/AHM5050"
@@ -106,10 +115,13 @@ aa_install () {
     sudo chmod -R 777 "$AUDIOASSAULTBIN/Duality/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/RVXX/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/Sigma/"
+    sudo chmod -R 777 "$AUDIOASSAULTBIN/Sigma EX/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/Blacksun/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/AHM5050/"
 
     # chmod
+    #EX
+    sudo chmod +x "$AUDIOASSAULTBIN/Sigma EX/Sigma EX Standalone"
     #v3
     sudo chmod +x "$AUDIOASSAULTBIN/AHM5050/AHM 5050 v3 Standalone"
 
@@ -123,6 +135,8 @@ aa_install () {
     sudo chmod +x "$AUDIOASSAULTBIN/Blacksun/Blacksun Standalone"
 
     # usr/local/bin links
+    #EX
+    sudo ln -s "$AUDIOASSAULTBIN/Sigma EX/Sigma EX Standalone" "/usr/local/bin/sigma_ex"
     #v3
     sudo ln -s "$AUDIOASSAULTBIN/AHM5050/AHM 5050 v3 Standalone" "/usr/local/bin/ahm5050_v3"
 
@@ -152,7 +166,8 @@ aa_uninstall () {
     sudo rm -rf "$TEMPDIR"
 
     # desktop files
-
+    #EX
+    sudo rm -rf /usr/share/applications/sigma_ex.desktop
     #v3
     sudo rm -rf /usr/share/applications/ahm5050_v3.desktop
     #v2
@@ -176,6 +191,10 @@ aa_uninstall () {
     # bin
     sudo rm -rf "$AUDIOASSAULTBIN"
 
+    #EX
+    sudo rm -rf /usr/local/bin/sigma_ex
+    #v3
+    sudo rm -rf /usr/local/bin/ahm5050_v3
     #v2
     sudo rm -rf /usr/local/bin/rvxx_v2
     sudo rm -rf /usr/local/bin/sigma_v2
