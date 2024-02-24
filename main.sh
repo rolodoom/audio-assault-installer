@@ -19,6 +19,7 @@ command -v unzip >/dev/null 2>&1 || { echo >&2 "I require unzip but it's not ins
 
 TEMPDIR=$(readlink -f "@temp")
 VST=$(readlink -f "/usr/lib/vst")
+VST3=$(readlink -f "/usr/lib/vst3")
 AUDIOASSAULT=$(readlink -f "/usr/lib/vst/Audio Assault")
 AUDIOASSAULTBIN=$(readlink -f "/opt/Audio Assault")
 
@@ -36,6 +37,7 @@ aa_install () {
         # Unzip Audio Assult Sofware
         #EX
         unzip -q 'SigmaEXFeb27.zip' -d "$TEMPDIR"/SigmaEX
+        unzip -q 'DualityEXInstallers.zip' -d "$TEMPDIR"/DualityEX
         #v3
         unzip -q 'AHMv3.zip' -d "$TEMPDIR"/AHM5050
         #v2
@@ -61,6 +63,9 @@ aa_install () {
     # copy VST files
     #EX
     sudo cp -r "$TEMPDIR/SigmaEX/Sigma EX Linux/Linux/Sigma EX vst2.so" "$AUDIOASSAULT"
+    sudo cp -r "$TEMPDIR/DualityEX/Duality EX Linux/Duality EX vst2.so" "$AUDIOASSAULT"
+    sudo cp -r "$TEMPDIR/SigmaEX/Sigma EX Linux/Linux/Sigma EX.vst3" "$VST3"
+    sudo cp -r "$TEMPDIR/DualityEX/Duality EX Linux/Duality EX.vst3" "$VST3"
     #v3
     sudo cp -r "$TEMPDIR/AHM5050/AHM5050v3 Linux/AHM 5050 v3 vst2.so" "$AUDIOASSAULT"
     #v2
@@ -79,6 +84,7 @@ aa_install () {
         sudo mkdir "$AUDIOASSAULTBIN/RVXX"
         sudo mkdir "$AUDIOASSAULTBIN/Sigma"
         sudo mkdir "$AUDIOASSAULTBIN/Sigma EX"
+        sudo mkdir "$AUDIOASSAULTBIN/Duality EX"
         sudo mkdir "$AUDIOASSAULTBIN/Duality"
         sudo mkdir "$AUDIOASSAULTBIN/Blacksun"
         sudo mkdir "$AUDIOASSAULTBIN/AHM5050"
@@ -89,6 +95,8 @@ aa_install () {
     #EX
     sudo cp -r "$TEMPDIR/SigmaEX/Sigma EX Linux/Linux/Sigma EX" "$AUDIOASSAULTBIN"
     sudo cp -r "$TEMPDIR/SigmaEX/Sigma EX Linux/Linux/Sigma EX Standalone" "$AUDIOASSAULTBIN/Sigma EX"
+    sudo cp -r "$TEMPDIR/DualityEX/Duality EX Linux/Duality EX" "$AUDIOASSAULTBIN"
+    sudo cp -r "$TEMPDIR/DualityEX/Duality EX Linux/Duality EX Standalone" "$AUDIOASSAULTBIN/Duality EX"
 
     #v3
     sudo cp -r "$TEMPDIR/AHM5050/AHM5050v3 Linux/AHM5050" "$AUDIOASSAULTBIN"
@@ -116,12 +124,14 @@ aa_install () {
     sudo chmod -R 777 "$AUDIOASSAULTBIN/RVXX/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/Sigma/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/Sigma EX/"
+    sudo chmod -R 777 "$AUDIOASSAULTBIN/Duality EX/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/Blacksun/"
     sudo chmod -R 777 "$AUDIOASSAULTBIN/AHM5050/"
 
     # chmod
     #EX
     sudo chmod +x "$AUDIOASSAULTBIN/Sigma EX/Sigma EX Standalone"
+    sudo chmod +x "$AUDIOASSAULTBIN/Duality EX/Duality EX Standalone"
     #v3
     sudo chmod +x "$AUDIOASSAULTBIN/AHM5050/AHM 5050 v3 Standalone"
 
@@ -137,6 +147,7 @@ aa_install () {
     # usr/local/bin links
     #EX
     sudo ln -s "$AUDIOASSAULTBIN/Sigma EX/Sigma EX Standalone" "/usr/local/bin/sigma_ex"
+    sudo ln -s "$AUDIOASSAULTBIN/Duality EX/Duality EX Standalone" "/usr/local/bin/duality_ex"
     #v3
     sudo ln -s "$AUDIOASSAULTBIN/AHM5050/AHM 5050 v3 Standalone" "/usr/local/bin/ahm5050_v3"
 
@@ -168,6 +179,7 @@ aa_uninstall () {
     # desktop files
     #EX
     sudo rm -rf /usr/share/applications/sigma_ex.desktop
+    sudo rm -rf /usr/share/applications/duality-ex.desktop
     #v3
     sudo rm -rf /usr/share/applications/ahm5050_v3.desktop
     #v2
@@ -183,16 +195,23 @@ aa_uninstall () {
     sudo rm -rf /usr/share/icons/ahm5050.png
     sudo rm -rf /usr/share/icons/rvxx.png
     sudo rm -rf /usr/share/icons/sigma.png
+    sudo rm -rf /usr/share/icons/duality-ex.png
     sudo rm -rf /usr/share/icons/duality-bass-studio.png
     sudo rm -rf /usr/share/icons/blacksun.png
 
     # vst
     sudo rm -rf "$AUDIOASSAULT"
+
+    #vst3
+    sudo rm -rf "$VST3/Duality EX.vst3"
+    sudo rm -rf "$VST3/Sigma EX.vst3"
+
     # bin
     sudo rm -rf "$AUDIOASSAULTBIN"
 
     #EX
     sudo rm -rf /usr/local/bin/sigma_ex
+    sudo rm -rf /usr/local/bin/duality_ex
     #v3
     sudo rm -rf /usr/local/bin/ahm5050_v3
     #v2
