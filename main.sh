@@ -303,6 +303,10 @@ aa_amplocker_uninstall(){
     rm -rf "$AUDIOASSAULT_LOCAL/Amp Locker Standalone"
     rm -rf "$AUDIOASSAULT_LOCAL/PluginData"
 
+    # Plugins
+    rm -rf "$VST3_LOCAL/Amp Locker.vst3"
+    rm -rf "$LV2_LOCAL/Amp Locker.lv2"
+
     # Link
     rm -rf "$BIN_LOCAL/amp_locker"
 
