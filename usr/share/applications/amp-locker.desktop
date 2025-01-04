@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Amp Locker
 Comment=All In One Amp Sim Suite
-Exec=~/.local/bin/amp_locker
+Exec="$HOME/Audio Assault/Amp Locker/Amp Locker Standalone"
 Terminal=false
 Type=Application
 Icon=amp-locker

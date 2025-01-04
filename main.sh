@@ -272,15 +272,15 @@ aa_amplocker_install(){
     cp -r "$TEMPDIR/AmpLocker/Amp Locker.lv2" "$LV2_LOCAL"
 
     # copy Stand Alone
-    cp -r "$TEMPDIR/AmpLocker/Amp Locker Standalone" "$AUDIOASSAULT_LOCAL"
+    mkdir -p "$AUDIOASSAULT_LOCAL/Amp Locker"
+    cp -r "$TEMPDIR/AmpLocker/Amp Locker Standalone" "$AUDIOASSAULT_LOCAL/Amp Locker"
 
     # copy Program Data
     mkdir -p "$AUDIOASSAULT_LOCAL/PluginData/Audio Assault/"
     cp -r "$TEMPDIR/AmpLocker/AmpLockerData" "$AUDIOASSAULT_LOCAL/PluginData/Audio Assault/"
 
     # Create Link
-    chmod +x "$AUDIOASSAULT_LOCAL/Amp Locker Standalone"
-    ln -sf "$AUDIOASSAULT_LOCAL/Amp Locker Standalone" "$BIN_LOCAL/amp_locker"
+    chmod +x "$AUDIOASSAULT_LOCAL/Amp Locker/Amp Locker Standalone"
 
     # copy .local files
     cp -r usr/share/applications/amp-locker.desktop "$HOME/.local/share/applications/"
@@ -300,7 +300,7 @@ aa_amplocker_uninstall(){
     rm -rf "$TEMPDIR"
 
     # Program Data
-    rm -rf "$AUDIOASSAULT_LOCAL/Amp Locker Standalone"
+    rm -rf "$AUDIOASSAULT_LOCAL/Amp Locker"
     rm -rf "$AUDIOASSAULT_LOCAL/PluginData"
 
     # Plugins
