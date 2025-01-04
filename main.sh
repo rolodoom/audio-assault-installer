@@ -8,7 +8,7 @@
 # | |       |  ___  |
 # | |       | |   | |    Install script
 # | |_____  | |___| |    for Audio Assault software
-# |_______| |_______|    Tested on Manjaro Qonos
+# |_______| |_______|    Tested on Debian 12
 #
 #
 #
@@ -23,9 +23,14 @@ VST3=$(readlink -f "/usr/lib/vst3")
 AUDIOASSAULT=$(readlink -f "/usr/lib/vst/Audio Assault")
 AUDIOASSAULTBIN=$(readlink -f "/opt/Audio Assault")
 
+AUDIOASSAULT_LOCAL=$(readlink -f "$HOME/Audio Assault")
+VST3_LOCAL=$(readlink -f "$HOME/.vst3")
+LV2_LOCAL=$(readlink -f "$HOME/.lv2")
+BIN_LOCAL=$(readlink -f "$HOME/.local/bin")
+
 # install subrutine
 aa_install () {
-    echo "installing..."
+    echo "installing Single Amps..."
 
     # installing required libcurl-gnutls
     # sudo pacman -S libcurl-gnutls
@@ -171,7 +176,7 @@ aa_install () {
 
 # uninstall subrutine
 aa_uninstall () {
-    echo "Uninstalling..."
+    echo "Uninstalling Single Amps.."
 
     # @temp
     sudo rm -rf "$TEMPDIR"
@@ -226,33 +231,126 @@ aa_uninstall () {
     echo "Done!!!"
 }
 
+# Amp Locker Install subroutine
+aa_amplocker_install(){
+
+    echo "Installing Amp Locker..."
+
+    # check if @temp exists
+    if [ ! -d "$TEMPDIR" ]; then
+        # Create dir if doesn't exists
+        mkdir @temp
+        # Unzip Amp Locker
+        #EX
+        unzip -q 'AmpLockerLinux.zip' -d "$TEMPDIR"/AmpLocker
+    fi
+
+    # clean mac Files from installers
+    find "$TEMPDIR" -name '.DS_Store' -exec rm -rf {} \;
+
+    # check if folder exists exists
+    if [ ! -d "$AUDIOASSAULT_LOCAL" ]; then
+    # Create dir if doesn't exists
+        mkdir -p "$AUDIOASSAULT_LOCAL"
+    fi
+    if [ ! -d "$VST3_LOCAL" ]; then
+    # Create dir if doesn't exists
+        mkdir -p "$VST3_LOCAL"
+    fi
+    if [ ! -d "$LV2_LOCAL" ]; then
+    # Create dir if doesn't exists
+        mkdir -p "$LV2_LOCAL"
+    fi
+    if [ ! -d "$BIN_LOCAL" ]; then
+    # Create dir if doesn't exists
+        mkdir -p "$BIN_LOCAL"
+    fi
+
+
+    # copy Plugin files
+    cp -r "$TEMPDIR/AmpLocker/Amp Locker.vst3" "$VST3_LOCAL"
+    cp -r "$TEMPDIR/AmpLocker/Amp Locker.lv2" "$LV2_LOCAL"
+
+    # copy Stand Alone
+    cp -r "$TEMPDIR/AmpLocker/Amp Locker Standalone" "$AUDIOASSAULT_LOCAL"
+
+    # copy Program Data
+    mkdir -p "$AUDIOASSAULT_LOCAL/PluginData/Audio Assault/"
+    cp -r "$TEMPDIR/AmpLocker/AmpLockerData" "$AUDIOASSAULT_LOCAL/PluginData/Audio Assault/"
+
+    # Create Link
+    chmod +x "$AUDIOASSAULT_LOCAL/Amp Locker Standalone"
+    ln -sf "$AUDIOASSAULT_LOCAL/Amp Locker Standalone" "$BIN_LOCAL/amp_locker"
+
+    # copy .local files
+    cp -r usr/share/applications/amp-locker.desktop "$HOME/.local/share/applications/"
+    cp -r usr/share/icons/amp-locker.png "$HOME/.local/share/icons/"
+
+    # Remove @temp
+    rm -rf "$TEMPDIR"
+
+    echo "Done!!!"
+}
+
+# Amp Locker uninstall subroutine
+aa_amplocker_uninstall(){
+    echo "Uninstalling Amp Locker..."
+
+    # @temp
+    rm -rf "$TEMPDIR"
+
+    # Program Data
+    rm -rf "$AUDIOASSAULT_LOCAL/Amp Locker Standalone"
+    rm -rf "$AUDIOASSAULT_LOCAL/PluginData"
+
+    # Link
+    rm -rf "$BIN_LOCAL/amp_locker"
+
+    # desktop & icons
+    rm -rf "$HOME/.local/share/applications/amp-locker.desktop"
+    rm -rf "$HOME/.local/share/icons/amp-locker.png"
+
+    echo "Done!!!"
+}
+
 
 # Start
 echo ""
-echo "**************************************"
-echo "*        Audio Assault Installer     *"
-echo "**************************************"
-echo "Available commands:"
+echo "╔═╗┬ ┬┌┬┐┬┌─┐  ╔═╗┌─┐┌─┐┌─┐┬ ┬┬ ┌┬┐"
+echo "╠═╣│ │ ││││ │  ╠═╣└─┐└─┐├─┤│ ││  │ "
+echo "╩ ╩└─┘─┴┘┴└─┘  ╩ ╩└─┘└─┘┴ ┴└─┘┴─┘┴ "
 echo ""
-echo "  [I]nstall"
-echo "  [U]ninstall"
-echo "  [Q]uit"
+echo "-> SINGLE AMPS"
+echo "  1) Install - 2) Uninstall"
 echo ""
-echo -n "Command [I,U,Q]:"
+echo "-> AMP LOCKER"
+echo "  3) Install - 4) Uninstall"
+echo ""
+echo "  5) [Q]uit"
+echo ""
+echo -n "Command [1,2,3,4,Q]: "
 read input
 echo ""
 
 # 
 case "$input" in
-    install|INSTALL|I|i)
+    1)
     aa_install    
     ;;
 
-    uninstall|UNINSTALL|U|u)
+    2)
     aa_uninstall
     ;;
+
+    3)
+    aa_amplocker_install
+    ;;
+
+    4)
+    aa_amplocker_uninstall
+    ;;
       
-    quit|QUIT|Q|q|exit|EXIT|x|X) 
+    5|Q|q) 
     echo "Bye!!!"
     ;;
     
