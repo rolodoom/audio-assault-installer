@@ -6,7 +6,7 @@ This is an installer for some cool guitar audio software from Audio Assault that
 
 ## Status
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/rolodoom/wp-docker-compose/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/rolodoom/audio-assault-installer/master/LICENSE)
 
 ## Usage
 
